@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--ink: #182321;
+		--paper: #f4f5ef;
+		--coral: #e86f51;
+		--mint: #dcefe6;
+	}
+
+	::selection {
+		background: var(--coral);
+		color: white;
+	}
+
+	body {
+		background: var(--paper);
+		color: var(--ink);
+	}
+
+	a,
+	button,
+	input {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
+
+@layer components {
+	.eyebrow {
+		@apply text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700;
+	}
+
+	.soft-panel {
+		@apply rounded-2xl border border-black/5 bg-white shadow-[0_20px_60px_-35px_rgba(24,35,33,0.45)];
+	}
+
+	.focus-ring {
+		@apply focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2;
+	}
+
+	.form-label {
+		@apply block text-xs font-bold uppercase tracking-[0.14em] text-[#66716c];
+	}
+
+	.form-input {
+		@apply mt-2 block w-full rounded-xl border-black/10 bg-[#fbfcf8] px-4 py-3 text-sm text-[#182321] shadow-sm outline-none transition placeholder:text-[#a2aaa4] focus:border-[#8ed0b2] focus:ring-4 focus:ring-[#dcefe6];
+	}
+
+	.primary-button {
+		@apply inline-flex items-center justify-center rounded-xl bg-[#e86f51] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#d95e42] focus:outline-none focus:ring-2 focus:ring-[#e86f51] focus:ring-offset-2;
+	}
+}
