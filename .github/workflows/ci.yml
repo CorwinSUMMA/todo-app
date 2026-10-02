@@ -22,6 +22,11 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
+      - name: Prepare Laravel application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
       - name: Check code style
         run: ./vendor/bin/pint --test
 
