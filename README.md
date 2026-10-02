@@ -34,23 +34,19 @@ php artisan migrate:status
 ### OTAP en CI/CD
 
 - **Ontwikkel:** lokaal ontwikkelen met `php artisan serve` en een lokale database.
-- **Test:** GitHub Actions draait Pint en alle tests bij een push of pull request naar `main`.
+- **Test:** GitHub Actions draait Pint en alle tests bij een push of pull request naar `master`.
 - **Acceptatie:** docent of opdrachtgever controleert de app op een preview/stagingomgeving.
-- **Productie:** Railway draait de goedgekeurde `main`-versie via HTTPS.
+- **Productie:** Render draait de goedgekeurde `master`-versie via HTTPS.
 
-De workflow staat in `.github/workflows/ci.yml`. Na een groene build maakt de workflow op `main` een release-tag. Configureer op Railway minimaal `APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY` en de databasevariabelen. Geheimen horen alleen in Railway Variables of GitHub Secrets, nooit in Git.
+De workflow staat in `.github/workflows/ci.yml`. Na een groene build maakt de workflow op `master` een release-tag. Configureer in Render minimaal `APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY` en de databasevariabelen. Geheimen horen alleen in Render Environment Variables of GitHub Secrets, nooit in Git.
 
-Een geschikte Railway startopdracht is:
-
-```bash
-php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
-```
+Render gebruikt de Docker-configuratie uit `render.yaml` en start de applicatie via de `Dockerfile`.
 
 ### AVG en auteursrecht
 
 De app verwerkt naam, e-mailadres en een gehashte wachtwoordwaarde in `users`, plus de taaktekst en status in `tasks`. Deze gegevens zijn nodig voor authenticatie en de takenlijst. Laravel gebruikt hashing voor wachtwoorden; het oorspronkelijke wachtwoord wordt niet opgeslagen. Toegang tot taken is beperkt tot de eigenaar. Een gebruiker kan het account verwijderen via het profiel, waarbij gekoppelde taken door de foreign key worden verwijderd.
 
-Bespreek vóór productie hoe lang accounts en taken worden bewaard en in welk datacenter Railway de gegevens opslaat. Beperk beheertoegang en verzamel geen gegevens die niet nodig zijn. Controleer de licenties van Composer- en NPM-packages; dit project gebruikt onder andere Laravel onder MIT-licentie. Gebruik alleen eigen of gelicentieerde afbeeldingen, tekst en iconen en noteer tutorial- of codebronnen.
+Bespreek vóór productie hoe lang accounts en taken worden bewaard en in welk datacenter Render de gegevens opslaat. Beperk beheertoegang en verzamel geen gegevens die niet nodig zijn. Controleer de licenties van Composer- en NPM-packages; dit project gebruikt onder andere Laravel onder MIT-licentie. Gebruik alleen eigen of gelicentieerde afbeeldingen, tekst en iconen en noteer tutorial- of codebronnen.
 
 ## About Laravel
 

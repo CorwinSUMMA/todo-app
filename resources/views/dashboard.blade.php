@@ -86,7 +86,7 @@
                         <span class="font-display text-3xl font-semibold text-[#f29a78]">{{ $progress }}%</span>
                     </div>
                     <div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10"><div class="h-full rounded-full bg-[#f29a78] transition-all" x-bind:style="'width: ' + {{ $progress }} + '%;'" aria-hidden="true"></div></div>
-                    <p class="mt-3 text-xs text-white/40">{{ $completedTasks }} van {{ $totalTasks }} {{ $totalTasks === 1 ? 'taak' : 'taken' }} afgerond</p>
+                    <p class="mt-3 text-xs text-white/40">{{ $completedTasks }} van {{ $totalTasks }} {{ $totalTasks === 1 ? 'taak' : 'taken' }} afgerond    </p>
                 </div>
             </aside>
         </div>
