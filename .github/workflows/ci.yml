@@ -28,6 +28,17 @@ jobs:
           php artisan key:generate
           php artisan config:clear
 
+      - name: Build frontend assets
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
       - name: Check code style
         run: ./vendor/bin/pint --test
 
